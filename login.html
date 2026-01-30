@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Sub Cultura</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+  <div class="fullscreen">
+
+    <!-- LOGO -->
+    <div class="logo-splash" id="logo">
+      <img src="logo.svg" alt="Sub Cultura">
+    </div>
+
+    <!-- CONTAINER -->
+    <div class="auth-container hidden" id="authContainer">
+
+      <!-- LOGIN -->
+      <div class="auth-box" id="loginBox">
+        <h2>Entrar</h2>
+
+        <form onsubmit="login(event)">
+          <input type="email" id="loginEmail" placeholder="Email" required>
+
+          <div class="password-field">
+            <input type="password" id="loginPassword" placeholder="Senha" required>
+            <span class="toggle-password" onclick="togglePassword('loginPassword', this)">👁</span>
+          </div>
+
+          <button type="submit">Entrar</button>
+        </form>
+
+        <!-- BOTÃO ENTRAR SEM LOGIN -->
+        <button class="guest-btn" onclick="entrarSemLogin()">Entrar sem login</button>
+
+        <p class="switch">
+          Não tem conta?
+          <span onclick="toggleAuth()">Criar conta</span>
+        </p>
+      </div>
+
+      <!-- CADASTRO -->
+      <div class="auth-box hidden" id="registerBox">
+        <h2>Criar conta</h2>
+
+        <form onsubmit="register(event)">
+          <input type="text" id="registerName" placeholder="Nome" required>
+          <input type="email" id="registerEmail" placeholder="Email" required>
+
+          <div class="password-field">
+            <input type="password" id="registerPassword" placeholder="Senha" required>
+            <span class="toggle-password" onclick="togglePassword('registerPassword', this)">👁</span>
+          </div>
+
+          <button type="submit">Cadastrar</button>
+        </form>
+
+        <p class="switch">
+          Já tem conta?
+          <span onclick="toggleAuth()">Entrar</span>
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    setTimeout(() => {
+      document.getElementById('logo').classList.add('fixed');
+      document.getElementById('authContainer').classList.remove('hidden');
+    }, 800);
+
+    function toggleAuth() {
+      const login = document.getElementById('loginBox');
+      const register = document.getElementById('registerBox');
+      if (!login.classList.contains('hidden')) {
+        login.classList.add('hidden');
+        setTimeout(() => register.classList.remove('hidden'), 150);
+      } else {
+        register.classList.add('hidden');
+        setTimeout(() => login.classList.remove('hidden'), 150);
+      }
+    }
+
+    function togglePassword(inputId, icon) {
+      const input = document.getElementById(inputId);
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = '🙈';
+      } else {
+        input.type = 'password';
+        icon.textContent = '👁';
+      }
+    }
+
+    function register(event) {
+      event.preventDefault();
+      const name = document.getElementById('registerName').value.trim();
+      const email = document.getElementById('registerEmail').value.trim().toLowerCase();
+      const password = document.getElementById('registerPassword').value.trim();
+
+      if (!name || !email || !password) {
+        alert('Preencha todos os campos');
+        return;
+      }
+
+      localStorage.setItem('user', JSON.stringify({ name, email, password }));
+      alert('Conta criada!');
+      toggleAuth();
+    }
+
+    function login(event) {
+      event.preventDefault();
+      const user = JSON.parse(localStorage.getItem('user'));
+      const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+      const password = document.getElementById('loginPassword').value.trim();
+
+      if (!user) {
+        alert('Nenhuma conta encontrada');
+        return;
+      }
+
+      if (email === user.email && password === user.password) {
+        window.location.href = 'index.html';
+      } else {
+        alert('Email ou senha inválidos');
+      }
+    }
+
+    function entrarSemLogin() {
+      localStorage.setItem('guest', 'true'); // marca como visitante
+      window.location.href = 'index.html';
+    }
+  </script>
+
+</body>
+</html>

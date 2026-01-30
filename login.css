@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, sans-serif;
+}
+
+:root {
+  --purple-1: #9a95e5;
+  --purple-2: #827ec0;
+  --purple-3: #5a55a3;
+  --dark: #111;
+  --blue: #4da3ff;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    var(--purple-1),
+    var(--purple-2),
+    var(--purple-3)
+  );
+}
+
+/* TELA CHEIA */
+.fullscreen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* LOGO */
+.logo-splash {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) scale(1.2);
+  transition: 0.8s ease;
+}
+
+.logo-splash img {
+  width: 180px;
+}
+
+.logo-splash.fixed {
+  top: 30px;
+  transform: translateY(0) scale(0.85);
+}
+
+/* CONTAINER */
+.auth-container {
+  margin-top: 160px;
+  animation: slideUp 0.6s ease;
+}
+
+/* BOX */
+.auth-box {
+  background: var(--dark);
+  padding: 40px;
+  border-radius: 14px;
+  width: 360px;
+  color: white;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.auth-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* INPUTS */
+.auth-box input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: #1c1c1c;
+  border: none;
+  border-radius: 6px;
+  color: white;
+}
+
+.auth-box input::placeholder {
+  color: #aaa;
+}
+
+/* BOTÃO */
+.auth-box button {
+  width: 100%;
+  padding: 12px;
+  background: #7b4cff;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.auth-box button:hover {
+  opacity: 0.9;
+}
+
+/* TROCA LOGIN */
+.switch {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.switch span {
+  color: var(--blue);
+  cursor: pointer;
+}
+
+/* ESCONDER */
+.hidden {
+  display: none;
+}
+
+/* ANIMAÇÃO */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MOSTRAR / OCULTAR SENHA */
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 40px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 42%;
+  transform: translateY(-60%);
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0.7;
+  user-select: none;
+}
+
+.toggle-password:hover {
+  opacity: 1;
+}
+
+.auth-box > button {
+  margin-top: 8px;
+}

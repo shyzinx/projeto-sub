@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sub Cultura</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo">
+    <img src="logo.svg" alt="Sub Cultura">
+  </div>
+
+  <nav class="menu">
+    <a href="#calcas">Calças e Bermudas</a>
+    <a href="#camisetas">Camisetas</a>
+    <a href="#calcados">Calçados</a>
+    <a href="#acessorios">Acessórios</a>
+  </nav>
+
+  <div class="user-area">
+    <span class="user-name">Visitante</span>
+    <button class="logout-btn">Sair</button>
+    <span class="cart" onclick="toggleCart()">🛒</span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Sub Cultura</h1>
+  <p>Moda urbana, atitude real.</p>
+  <button onclick="document.getElementById('camisetas').scrollIntoView({behavior:'smooth'})">
+    VER PRODUTOS
+  </button>
+</section>
+
+<!-- CAMISETAS -->
+<section class="products" id="camisetas">
+  <h2>Camisetas</h2>
+
+  <div class="products-grid">
+    <div class="product-card">
+      <img src="assets/img/camiseta-john-roger.jpeg">
+      <h3>Camiseta John Roger</h3>
+      <p>R$ 119,90</p>
+      <button>Adicionar</button>
+    </div>
+
+    <div class="product-card">
+      <img src="assets/img/camiseta-alive.jpeg">
+      <h3>Camiseta Alive</h3>
+      <p>R$ 109,90</p>
+      <button>Adicionar</button>
+    </div>
+
+    <div class="product-card">
+      <img src="assets/img/camiseta-branca-alive.jpeg">
+      <h3>Camiseta Alive Branca</h3>
+      <p>R$ 109,90</p>
+      <button>Adicionar</button>
+    </div>
+  </div>
+</section>
+
+<!-- CALÇAS -->
+<section class="products" id="calcas">
+  <h2>Calças e Bermudas</h2>
+
+  <div class="products-grid">
+    <div class="product-card">
+      <img src="assets/img/calça-preta.jpeg">
+      <h3>Calça Preta</h3>
+      <p>R$ 189,90</p>
+      <button>Adicionar</button>
+    </div>
+
+    <div class="product-card">
+      <img src="assets/img/bermuda-jeans-seven-luck.jpeg">
+      <h3>Bermuda Jeans Seven Luck</h3>
+      <p>R$ 159,90</p>
+      <button>Adicionar</button>
+    </div>
+  </div>
+</section>
+
+<!-- CALÇADOS -->
+<section class="products" id="calcados">
+  <h2>Calçados</h2>
+
+  <div class="products-grid">
+    <div class="product-card">
+      <img src="assets/img/tenis-branco-drop-dead.jpeg">
+      <h3>Tênis Branco Drop Dead</h3>
+      <p>R$ 299,90</p>
+      <button>Adicionar</button>
+    </div>
+
+    <div class="product-card">
+      <img src="assets/img/tenis-drop-dead.jpeg">
+      <h3>Tênis Drop Dead</h3>
+      <p>R$ 279,90</p>
+      <button>Adicionar</button>
+    </div>
+  </div>
+</section>
+
+<! -- ACESSÓRIOS -->
+<section class="products" id="acessorios">
+  <h2>Acessórios</h2>
+
+
+    <div class="products-grid">
+    <div class="product-card">
+      <img src="assets/img/bone-john-rogerr.jpeg">  
+      <h3>Boné John Roger</h3>
+      <p>R$ 89,90</p>
+      <button>Adicionar</button>
+    </div>
+
+    <div class="product-card">
+      <img src="assets/img/bone-alive.jpeg">
+      <h3>Boné Alive</h3>
+      <p>R$ 99,90</p>
+      <button>Adicionar</button>
+    </div>
+  </div>  
+
+<!-- CARRINHO -->
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <h2>Carrinho</h2>
+    <span class="close-cart" onclick="toggleCart()">✕</span>
+  </div>
+
+  <p>Seu carrinho está vazio 🛒</p>
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+<script>
+  // ABRIR / FECHAR CARRINHO
+  function toggleCart() {
+    document.getElementById('cartPanel').classList.toggle('active');
+    document.getElementById('overlay').classList.toggle('active');
+  }
+
+  // BOTÃO SAIR (AGORA FUNCIONA)
+  const logoutBtn = document.querySelector('.logout-btn');
+
+  logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('guest');
+    localStorage.removeItem('cart');
+    window.location.href = 'login.html';
+  });
+</script>
+
+</body>
+</html>
