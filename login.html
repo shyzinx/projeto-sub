@@ -1,141 +1,160 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login | Sub Cultura</title>
-  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="style.css" /> 
 </head>
-
 <body>
 
   <div class="fullscreen">
-
-    <!-- LOGO -->
-    <div class="logo-splash" id="logo">
+    <div class="logo-splash" id="mainLogo">
       <img src="logo.svg" alt="Sub Cultura">
     </div>
 
-    <!-- CONTAINER -->
     <div class="auth-container hidden" id="authContainer">
-
-      <!-- LOGIN -->
       <div class="auth-box" id="loginBox">
-        <h2>Entrar</h2>
 
-        <form onsubmit="login(event)">
-          <input type="email" id="loginEmail" placeholder="Email" required>
+        <h2>Bem-vindo</h2>
+        
+        <input type="email" id="email" placeholder="E-mail" required>
+        
+        <div class="password-field">
+          <input type="password" id="password" placeholder="Senha" required>
+        </div>
 
-          <div class="password-field">
-            <input type="password" id="loginPassword" placeholder="Senha" required>
-            <span class="toggle-password" onclick="togglePassword('loginPassword', this)">👁</span>
-          </div>
+        <button id="btnLogin">Entrar</button>
 
-          <button type="submit">Entrar</button>
-        </form>
+        <div class="switch">
+          Não tem conta? <span id="showRegister">Criar conta</span>
+        </div>
 
-        <!-- BOTÃO ENTRAR SEM LOGIN -->
-        <button class="guest-btn" onclick="entrarSemLogin()">Entrar sem login</button>
+        <div class="switch">
+          <span id="btnGuest">Entrar como Visitante</span>
+        </div>
 
-        <p class="switch">
-          Não tem conta?
-          <span onclick="toggleAuth()">Criar conta</span>
-        </p>
       </div>
+
 
       <!-- CADASTRO -->
       <div class="auth-box hidden" id="registerBox">
-        <h2>Criar conta</h2>
 
-        <form onsubmit="register(event)">
-          <input type="text" id="registerName" placeholder="Nome" required>
-          <input type="email" id="registerEmail" placeholder="Email" required>
+        <h2>Criar Conta</h2>
 
-          <div class="password-field">
-            <input type="password" id="registerPassword" placeholder="Senha" required>
-            <span class="toggle-password" onclick="togglePassword('registerPassword', this)">👁</span>
-          </div>
+        <input type="text" id="regName" placeholder="Nome" required>
 
-          <button type="submit">Cadastrar</button>
-        </form>
+        <input type="email" id="regEmail" placeholder="E-mail" required>
+        
+        <div class="password-field">
+          <input type="password" id="regPassword" placeholder="Senha" required>
+        </div>
 
-        <p class="switch">
-          Já tem conta?
-          <span onclick="toggleAuth()">Entrar</span>
-        </p>
+        <button id="btnRegister">Cadastrar</button>
+
+        <div class="switch">
+          Já tem conta? <span id="showLogin">Voltar para login</span>
+        </div>
+
       </div>
 
     </div>
-
   </div>
 
   <script>
-    setTimeout(() => {
-      document.getElementById('logo').classList.add('fixed');
-      document.getElementById('authContainer').classList.remove('hidden');
-    }, 800);
+    const logo = document.getElementById('mainLogo');
+    const container = document.getElementById('authContainer');
+    const btnLogin = document.getElementById('btnLogin');
+    const btnGuest = document.getElementById('btnGuest');
 
-    function toggleAuth() {
-      const login = document.getElementById('loginBox');
-      const register = document.getElementById('registerBox');
-      if (!login.classList.contains('hidden')) {
-        login.classList.add('hidden');
-        setTimeout(() => register.classList.remove('hidden'), 150);
-      } else {
-        register.classList.add('hidden');
-        setTimeout(() => login.classList.remove('hidden'), 150);
-      }
-    }
+    const loginBox = document.getElementById('loginBox');
+    const registerBox = document.getElementById('registerBox');
 
-    function togglePassword(inputId, icon) {
-      const input = document.getElementById(inputId);
-      if (input.type === 'password') {
-        input.type = 'text';
-        icon.textContent = '🙈';
-      } else {
-        input.type = 'password';
-        icon.textContent = '👁';
-      }
-    }
+    const showRegister = document.getElementById('showRegister');
+    const showLogin = document.getElementById('showLogin');
 
-    function register(event) {
-      event.preventDefault();
-      const name = document.getElementById('registerName').value.trim();
-      const email = document.getElementById('registerEmail').value.trim().toLowerCase();
-      const password = document.getElementById('registerPassword').value.trim();
+    const btnRegister = document.getElementById('btnRegister');
+
+    // EFEITO DA LOGO SUBINDO
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        logo.classList.add('fixed');
+        container.classList.remove('hidden');
+      }, 500);
+    });
+
+    // TROCAR PARA CADASTRO
+    showRegister.addEventListener('click', () => {
+      loginBox.classList.add('hidden');
+      registerBox.classList.remove('hidden');
+    });
+
+    // VOLTAR PARA LOGIN
+    showLogin.addEventListener('click', () => {
+      registerBox.classList.add('hidden');
+      loginBox.classList.remove('hidden');
+    });
+
+    // CADASTRO
+    btnRegister.addEventListener('click', () => {
+
+      const name = document.getElementById('regName').value;
+      const email = document.getElementById('regEmail').value;
+      const password = document.getElementById('regPassword').value;
 
       if (!name || !email || !password) {
         alert('Preencha todos os campos');
         return;
       }
 
-      localStorage.setItem('user', JSON.stringify({ name, email, password }));
-      alert('Conta criada!');
-      toggleAuth();
-    }
+      const userData = {
+        name: name,
+        email: email,
+        password: password
+      };
 
-    function login(event) {
-      event.preventDefault();
-      const user = JSON.parse(localStorage.getItem('user'));
-      const email = document.getElementById('loginEmail').value.trim().toLowerCase();
-      const password = document.getElementById('loginPassword').value.trim();
+      localStorage.setItem('user', JSON.stringify(userData));
 
-      if (!user) {
-        alert('Nenhuma conta encontrada');
+      alert('Conta criada com sucesso!');
+
+      registerBox.classList.add('hidden');
+      loginBox.classList.remove('hidden');
+    });
+
+    // LOGIN
+    btnLogin.addEventListener('click', () => {
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      const savedUser = JSON.parse(localStorage.getItem('user'));
+
+      if (!savedUser) {
+        alert('Nenhuma conta cadastrada');
         return;
       }
 
-      if (email === user.email && password === user.password) {
-        window.location.href = 'index.html';
-      } else {
-        alert('Email ou senha inválidos');
-      }
-    }
+      if (email === savedUser.email && password === savedUser.password) {
 
-    function entrarSemLogin() {
-      localStorage.setItem('guest', 'true'); // marca como visitante
+        localStorage.setItem('user', JSON.stringify(savedUser));
+        localStorage.removeItem('guest');
+
+        window.location.href = 'index.html';
+
+      } else {
+        alert('E-mail ou senha incorretos');
+      }
+
+    });
+
+    // VISITANTE
+    btnGuest.addEventListener('click', () => {
+      localStorage.setItem('guest', 'true');
+      localStorage.removeItem('user');
       window.location.href = 'index.html';
-    }
+    });
+
   </script>
 
 </body>

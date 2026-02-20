@@ -1,3 +1,6 @@
+/* ============================================================
+   SEU CÓDIGO ORIGINAL COM AJUSTES DE DESIGN
+   ============================================================ */
 * {
   margin: 0;
   padding: 0;
@@ -9,10 +12,6 @@ body {
   background: #8e89c7;
   color: #fff;
 }
-.hero {
-  padding-top: 140px;
-}
-
 
 .header {
   position: fixed;
@@ -20,19 +19,17 @@ body {
   left: 0;
   width: 100%;
   z-index: 999;
-
   display: flex;
   align-items: center;
   padding: 14px 40px;
-  border-bottom: 1px solid #000;
-  background: #8e89c7;
+  background: rgba(0, 0, 0, 0.1); 
+  border-bottom: none;
 }
 
 .logo img {
   height: 42px;
 }
 
-/* MENU CENTRAL */
 .menu {
   display: flex;
   gap: 30px;
@@ -43,14 +40,13 @@ body {
   color: #fff;
   text-decoration: none;
   font-weight: bold;
-   margin-left: 40px; /* aumenta esse valor para mover mais para a direita */
+  margin-left: 40px;
 }
 
 .menu a:hover {
   color: #4da3ff;
 }
 
-/* USER */
 .user-area {
   display: flex;
   align-items: center;
@@ -75,17 +71,46 @@ body {
   cursor: pointer;
 }
 
-/* HERO */
+/* ================= HERO ================= */
+
 .hero {
-  padding: 100px 40px;
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  align-items: center;
+  text-align: center;
+  padding: 0 40px;
+  padding-top: 250px;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('assets/img/hero-subcultura.jpeg');
+  background-size: cover;
+  background-position: center 45%;
+  filter: blur(10px);
+  transform: scale(1.1);
+  z-index: -1;
+}
+
+.hero h1, .hero p, .hero button {
+  position: relative;
+  z-index: 2;
 }
 
 .hero h1 {
-  font-size: 56px;
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .hero p {
-  margin: 14px 0 20px;
+  font-size: 18px;
 }
 
 .hero button {
@@ -94,9 +119,13 @@ body {
   padding: 14px 30px;
   color: #fff;
   cursor: pointer;
+  border-radius: 4px;
+  margin-top: 20px;
+  font-weight: bold;
 }
 
-/* PRODUTOS */
+/* ================= PRODUTOS ================= */
+
 .products {
   padding: 60px 40px;
 }
@@ -108,23 +137,38 @@ body {
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 40px;
 }
 
 .product-card {
   background: #fff;
   color: #000;
-  border-radius: 14px;
+  border-radius: 20px;
   overflow: hidden;
   text-align: center;
-  padding-bottom: 16px;
+  padding-bottom: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: none; 
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
 .product-card img {
   width: 100%;
-  height: 260px;
+  height: 320px; 
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.03);
+  filter: brightness(1.1);
 }
 
 .product-card h3 {
@@ -139,13 +183,20 @@ body {
 .product-card button {
   background: #6f4cff;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 25px;
   color: #fff;
-  border-radius: 20px;
+  border-radius: 25px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-/* CARRINHO */
+.product-card:hover button {
+  background: #6f4cff;
+  filter: brightness(1.2);
+}
+
+/* ================= CARRINHO ================= */
+
 .cart-panel {
   position: fixed;
   top: 0;
@@ -173,7 +224,6 @@ body {
   cursor: pointer;
 }
 
-/* OVERLAY */
 .overlay {
   display: none;
   position: fixed;
@@ -183,4 +233,188 @@ body {
 
 .overlay.active {
   display: block;
+}
+
+/* ================= PÁGINA PRODUTO ================= */
+
+.pagina-produto {
+  padding-top: 100px;
+}
+
+.product-card-container {
+  background: #fff;
+  width: 85%;
+  max-width: 1100px;
+  margin: 20px auto;
+  border-radius: 40px;
+  display: flex;
+  overflow: hidden; 
+  min-height: 550px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  color: #333;
+}
+
+.product-left {
+  flex: 1;
+  background: #f8f8f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.product-right {
+  flex: 1.2;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-img {
+  max-width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+}
+
+.sizes-container {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.sizes-container button {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.sizes-container button.active {
+  background: #6f4cff;
+  color: #fff;
+}
+
+/* REMOVER HOVER IMAGEM PRODUTO */
+
+.product-page img {
+  transition: none !important;
+}
+
+.product-page img:hover {
+  transform: none !important;
+  filter: none !important;
+}
+
+/* ============================================================
+   PERFIL / PAINEL DO USUÁRIO
+   ============================================================ */
+
+.profile-icon {
+  font-size: 26px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+
+.profile-icon:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* PAINEL */
+
+.user-panel {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 340px;
+  height: 100%;
+  background: #ffffff;
+  color: #000;
+  z-index: 1100;
+  transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+}
+
+.user-panel.active {
+  right: 0;
+}
+
+.user-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.user-panel-content {
+  padding: 20px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.user-panel h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.user-panel h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+#orderHistory {
+  font-size: 14px;
+  color: #333;
+}
+
+#orderHistory div {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+.user-panel {
+  background: #2a2350; /* roxo escuro derivado do seu */
+  color: #fff;
+  box-shadow: -10px 0 30px rgba(111, 76, 255, 0.4);
+}
+
+.user-panel-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-panel h2 {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.user-panel h3 {
+  color: #8e89c7; /* seu roxo principal */
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+#orderHistory {
+  font-size: 14px;
+  color: #ddd;
+}
+
+#orderHistory div {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(111, 76, 255, 0.2);
+  transition: 0.2s;
+}
+
+#orderHistory div:hover {
+  border-color: #6f4cff;
+  background: rgba(111, 76, 255, 0.15);
 }

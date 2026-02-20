@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout | Sub Cultura</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #8e89c7;
+      padding-top: 100px;
+      font-family: Arial, sans-serif;
+    }
+
+    .checkout-container {
+      width: 90%;
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    .checkout-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    .total {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 30px;
+      text-align: right;
+    }
+
+    .btn-finalizar {
+      margin-top: 30px;
+      width: 100%;
+      padding: 15px;
+      border-radius: 12px;
+      border: none;
+      background: #6f4cff;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-finalizar:hover {
+      background: #4da3ff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="checkout-container">
+  <h1>Resumo do Pedido</h1>
+
+  <div id="checkoutItems"></div>
+
+  <div class="total" id="totalPrice">Total: R$ 0,00</div>
+
+  <button class="btn-finalizar" id="finishOrder">
+    Finalizar Compra
+  </button>
+</div>
+
+<script src="checkout.js"></script>
+
+</body>
+</html>

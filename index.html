@@ -22,13 +22,13 @@
   </nav>
 
   <div class="user-area">
+    <span class="profile-icon" onclick="toggleUserPanel()">👤</span>
     <span class="user-name">Visitante</span>
     <button class="logout-btn">Sair</button>
     <span class="cart" onclick="toggleCart()">🛒</span>
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <h1>Sub Cultura</h1>
   <p>Moda urbana, atitude real.</p>
@@ -37,126 +37,276 @@
   </button>
 </section>
 
-<!-- CAMISETAS -->
 <section class="products" id="camisetas">
   <h2>Camisetas</h2>
-
   <div class="products-grid">
-    <div class="product-card">
+
+    <div class="product-card"
+      onclick="abrirProduto({
+        nome: 'Camiseta John Roger',
+        imagem: 'assets/img/camiseta-john-roger.jpeg',
+        preco: 'R$ 119,90',
+        desc: 'Camiseta streetwear premium produzida com algodão de alta qualidade e estampa exclusiva.',
+        tamanhos: ['P','M','G','GG']
+      })">
       <img src="assets/img/camiseta-john-roger.jpeg">
       <h3>Camiseta John Roger</h3>
       <p>R$ 119,90</p>
-      <button>Adicionar</button>
+      <button onclick="event.stopPropagation()">Adicionar</button>
     </div>
 
-    <div class="product-card">
+    <div class="product-card"
+      onclick="abrirProduto({
+        nome: 'Camiseta Alive',
+        imagem: 'assets/img/camiseta-alive.jpeg',
+        preco: 'R$ 109,90',
+        desc: 'Camiseta urbana confortável, ideal para o dia a dia com corte oversized.',
+        tamanhos: ['P','M','G','GG']
+      })">
       <img src="assets/img/camiseta-alive.jpeg">
       <h3>Camiseta Alive</h3>
       <p>R$ 109,90</p>
-      <button>Adicionar</button>
+      <button onclick="event.stopPropagation()">Adicionar</button>
     </div>
 
-    <div class="product-card">
+    <div class="product-card"
+      onclick="abrirProduto({
+        nome: 'Camiseta Alive Branca',
+        imagem: 'assets/img/camiseta-branca-alive.jpeg',
+        preco: 'R$ 109,90',
+        desc: 'Camiseta branca estilo street com acabamento reforçado e tecido respirável.',
+        tamanhos: ['P','M','G','GG']
+      })">
       <img src="assets/img/camiseta-branca-alive.jpeg">
       <h3>Camiseta Alive Branca</h3>
       <p>R$ 109,90</p>
-      <button>Adicionar</button>
+      <button onclick="event.stopPropagation()">Adicionar</button>
     </div>
+
   </div>
 </section>
 
-<!-- CALÇAS -->
+<!-- OUTRAS SEÇÕES MANTIDAS IGUAL -->
 <section class="products" id="calcas">
   <h2>Calças e Bermudas</h2>
-
   <div class="products-grid">
-    <div class="product-card">
+    <div class="product-card"
+      onclick="abrirProduto({
+        nome: 'Calça Preta',
+        imagem: 'assets/img/calça-preta.jpeg',
+        preco: 'R$ 189,90',
+        desc: 'Calça preta streetwear com modelagem cargo e diversos bolsos funcionais.',
+        tamanhos: ['P','M','G','GG']
+      })">
       <img src="assets/img/calça-preta.jpeg">
       <h3>Calça Preta</h3>
       <p>R$ 189,90</p>
-      <button>Adicionar</button>
+      <button onclick="event.stopPropagation()">Adicionar</button>
     </div>
 
-    <div class="product-card">
+    <div class="product-card"
+      onclick="abrirProduto({
+        nome: 'Bermuda Jeans Seven Luck',
+        imagem: 'assets/img/bermuda-jeans-seven-luck.jpeg',
+        preco: 'R$ 159,90',
+        desc: 'Bermuda jeans casual com lavagem moderna e caimento perfeito.',
+        tamanhos: ['P','M','G','GG']
+      })">
       <img src="assets/img/bermuda-jeans-seven-luck.jpeg">
       <h3>Bermuda Jeans Seven Luck</h3>
       <p>R$ 159,90</p>
-      <button>Adicionar</button>
+      <button onclick="event.stopPropagation()">Adicionar</button>
     </div>
+
   </div>
 </section>
 
-<!-- CALÇADOS -->
 <section class="products" id="calcados">
   <h2>Calçados</h2>
-
   <div class="products-grid">
-    <div class="product-card">
+    <div class="product-card"
+      onclick="abrirProduto({
+        nome: 'Tênis Branco Drop Dead',
+        imagem: 'assets/img/tenis-branco-drop-dead.jpeg',
+        preco: 'R$ 299,90',
+        desc: 'Tênis branco urbano com solado vulcanizado e alta durabilidade.',
+        tamanhos: ['36','37','38','39','40','41']
+      })">
       <img src="assets/img/tenis-branco-drop-dead.jpeg">
       <h3>Tênis Branco Drop Dead</h3>
       <p>R$ 299,90</p>
-      <button>Adicionar</button>
+      <button onclick="event.stopPropagation()">Adicionar</button>
     </div>
 
-    <div class="product-card">
+    <div class="product-card"
+      onclick="abrirProduto({
+        nome: 'Tênis Drop Dead',
+        imagem: 'assets/img/tenis-drop-dead.jpeg',
+        preco: 'R$ 279,90',
+        desc: 'Tênis street confortável para sessões de skate ou uso casual.',
+        tamanhos: ['36','37','38','39','40','41']
+      })">
       <img src="assets/img/tenis-drop-dead.jpeg">
       <h3>Tênis Drop Dead</h3>
       <p>R$ 279,90</p>
-      <button>Adicionar</button>
+      <button onclick="event.stopPropagation()">Adicionar</button>
     </div>
+
   </div>
 </section>
 
-<! -- ACESSÓRIOS -->
 <section class="products" id="acessorios">
   <h2>Acessórios</h2>
+  <div class="products-grid">
 
-
-    <div class="products-grid">
-    <div class="product-card">
-      <img src="assets/img/bone-john-rogerr.jpeg">  
+    <div class="product-card"
+      onclick="abrirProduto({
+        nome: 'Boné John Roger',
+        imagem: 'assets/img/bone-john-rogerr.jpeg',
+        preco: 'R$ 89,90',
+        desc: 'Boné streetwear bordado com ajuste snapback.',
+        tamanhos: ['Único']
+      })">
+      <img src="assets/img/bone-john-rogerr.jpeg">
       <h3>Boné John Roger</h3>
       <p>R$ 89,90</p>
-      <button>Adicionar</button>
+      <button onclick="event.stopPropagation()">Adicionar</button>
     </div>
 
-    <div class="product-card">
+    <div class="product-card"
+      onclick="abrirProduto({
+        nome: 'Boné Alive',
+        imagem: 'assets/img/bone-alive.jpeg',
+        preco: 'R$ 99,90',
+        desc: 'Boné premium urbano com material de alta resistência.',
+        tamanhos: ['Único']
+      })">
       <img src="assets/img/bone-alive.jpeg">
       <h3>Boné Alive</h3>
       <p>R$ 99,90</p>
-      <button>Adicionar</button>
+      <button onclick="event.stopPropagation()">Adicionar</button>
     </div>
-  </div>  
 
-<!-- CARRINHO -->
+  </div>
+</section>
+
+<!-- ================= CARRINHO ================= -->
+
 <div class="cart-panel" id="cartPanel">
   <div class="cart-header">
     <h2>Carrinho</h2>
     <span class="close-cart" onclick="toggleCart()">✕</span>
   </div>
-
-  <p>Seu carrinho está vazio 🛒</p>
+  <div id="cartItems"></div>
 </div>
 
-<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+<!-- ================= PAINEL USUÁRIO ================= -->
+
+<div class="user-panel" id="userPanel">
+  <div class="user-panel-header">
+    <h2>Meu Perfil</h2>
+    <span onclick="toggleUserPanel()" style="cursor:pointer;">✕</span>
+  </div>
+  <div class="user-panel-content">
+    <h3>Informações</h3>
+    <p id="profileName">Nome</p>
+    <p id="profileEmail">Email</p>
+    <h3>Histórico de Pedidos</h3>
+    <div id="orderHistory">
+      Nenhum pedido ainda.
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeAll()"></div>
 
 <script>
-  // ABRIR / FECHAR CARRINHO
-  function toggleCart() {
-    document.getElementById('cartPanel').classList.toggle('active');
-    document.getElementById('overlay').classList.toggle('active');
+/* ================= FUNÇÕES PAINÉIS ================= */
+function toggleCart() {
+  document.getElementById('cartPanel').classList.toggle('active');
+  document.getElementById('overlay').classList.toggle('active');
+}
+function toggleUserPanel() {
+  document.getElementById('userPanel').classList.toggle('active');
+  document.getElementById('overlay').classList.toggle('active');
+}
+function closeAll() {
+  document.getElementById('overlay').classList.remove('active');
+  document.getElementById('cartPanel').classList.remove('active');
+  document.getElementById('userPanel').classList.remove('active');
+}
+
+/* ================= PRODUTO ================= */
+function abrirProduto(produto) {
+  localStorage.setItem('produtoSelecionado', JSON.stringify(produto));
+  window.location.href = 'product.html';
+}
+
+/* ================= CARRINHO ================= */
+function renderCart() {
+  const container = document.getElementById('cartItems');
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  container.innerHTML = '';
+  if (cart.length === 0) {
+    container.innerHTML = `<p style="text-align:center; margin-top:40px;">Seu carrinho está vazio 🛒</p>`;
+    return;
+  }
+  cart.forEach((item, index) => {
+    const div = document.createElement('div');
+    div.style.cssText = `display:flex; gap:10px; margin-bottom:15px; border-bottom:1px solid #eee; padding-bottom:10px; color:#000;`;
+    div.innerHTML = `
+      <img src="${item.imagem}" style="width:50px; height:50px; object-fit:cover; border-radius:5px;">
+      <div style="flex:1;">
+        <strong style="font-size:13px;">${item.nome}</strong>
+        <div style="font-size:12px;">Tam: ${item.tamanho}</div>
+        <div style="font-size:12px;">Qtd: ${item.quantidade}</div>
+      </div>
+      <button onclick="removeItem(${index})" style="background:none;border:none;color:red;cursor:pointer;">✕</button>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function removeItem(index) {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart.splice(index, 1);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  renderCart();
+}
+
+/* ================= USUÁRIO ================= */
+document.addEventListener("DOMContentLoaded", function () {
+  const userNameElement = document.querySelector(".user-name");
+  const profileName = document.getElementById("profileName");
+  const profileEmail = document.getElementById("profileEmail");
+
+  const usuario = JSON.parse(localStorage.getItem("usuarioLogado")) || JSON.parse(localStorage.getItem("user"));
+
+  if (usuario && userNameElement) {
+    userNameElement.textContent = `Olá, ${usuario.name || usuario.nome}`;
+    if(profileName) profileName.textContent = usuario.name || usuario.nome;
+    if(profileEmail) profileEmail.textContent = usuario.email || "";
+  } else if(userNameElement) {
+    userNameElement.textContent = "Visitante";
   }
 
-  // BOTÃO SAIR (AGORA FUNCIONA)
-  const logoutBtn = document.querySelector('.logout-btn');
+  // Logout funcional
+  const logoutBtn = document.querySelector(".logout-btn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem("usuarioLogado");
+      localStorage.removeItem("user");
+      window.location.href = "login.html";
+    });
+  }
 
-  logoutBtn.addEventListener('click', () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('guest');
-    localStorage.removeItem('cart');
-    window.location.href = 'login.html';
-  });
+  renderCart();
+});
+
+/* ================= INICIALIZA ================= */
+document.addEventListener('DOMContentLoaded', renderCart);
 </script>
 
+<script src="login.js"></script>
 </body>
 </html>
